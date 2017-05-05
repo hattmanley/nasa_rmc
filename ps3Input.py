@@ -43,14 +43,14 @@ while loopQuit == False:
     		button = joystick.get_button(i)
     		outstr = outstr + str(i) + ":" + str(button) + "|"
 	print(outstr)
-    
+
 	for event in pygame.event.get():
-    	if event.type == QUIT:
-        	loopQuit = True
-    	elif event.type == pygame.KEYDOWN:
-        	if event.key == pygame.K_ESCAPE:
-            	loopQuit = True
-           	 
+		if event.type == QUIT:
+			loopQuit = True
+		elif event.type == pygame.KEYDOWN:
+			if event.key == pygame.K_ESCAPE:
+				loopQuit = True
+
     	# other event tests, but polling seems to work better in main loop
     	# if event.type == pygame.JOYBUTTONDOWN:
     	#	print("joy button down")
