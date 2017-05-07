@@ -1,0 +1,8 @@
+prefix=/home/matt/catkin_ws/install
+
+Name: obs_avoid
+Description: Description of obs_avoid
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/matt/catkin_ws/install/lib 
+Requires: 

@@ -1,0 +1,8 @@
+prefix=/home/matt/catkin_ws/devel
+
+Name: path_planning
+Description: Description of path_planning
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/matt/catkin_ws/devel/lib 
+Requires: 

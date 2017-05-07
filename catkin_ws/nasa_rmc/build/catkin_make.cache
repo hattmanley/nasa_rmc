@@ -1,0 +1,2 @@
+
+-DCATKIN_DEVEL_PREFIX=/home/matt/nasa_rmc/devel -DCMAKE_INSTALL_PREFIX=/home/matt/nasa_rmc/install -G Unix Makefiles
