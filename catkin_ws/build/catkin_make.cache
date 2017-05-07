@@ -1,2 +1,2 @@
-motor_control:nasa_rmc:obs_avoid:path_planning:ps3_controller
+motor_control:nasa_rmc:obs_avoid:path_planning:ps3_controller:usb_cam
 -DCATKIN_DEVEL_PREFIX=/home/matt/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/matt/catkin_ws/install -G Unix Makefiles

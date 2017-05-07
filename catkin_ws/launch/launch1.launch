@@ -1,0 +1,6 @@
+<launch>
+  <machine name="rpi" address="192.168.0.29" env-loader="/opt/ros/kinetic/env.sh" user="pi" password="raspberry" timeout="10"/>
+  <node pkg="joy" type="joy_node" name="joy_node"/>
+  <node pkg="ps3_controller" type="ps3TeleopSimple.py" name="controller"/>
+  <node machine="rpi" pkg="motor_control" type="piMotorControl.py" name="motor_control"/>
+</launch>

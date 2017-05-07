@@ -122,6 +122,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/matt/catkin_ws/build/obs_avoid/cmake_install.cmake")
   include("/home/matt/catkin_ws/build/path_planning/cmake_install.cmake")
   include("/home/matt/catkin_ws/build/ps3_controller/cmake_install.cmake")
+  include("/home/matt/catkin_ws/build/usb_cam/cmake_install.cmake")
 
 endif()
 
