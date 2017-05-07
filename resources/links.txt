@@ -1,0 +1,10 @@
+https://github.com/adafruit/Adafruit_Python_PCA9685
+http://wiki.ros.org/ps3joy
+http://wiki.ros.org/joy/Tutorials/ConfiguringALinuxJoystick
+http://docs.ros.org/api/geometry_msgs/html/msg/Twist.html
+https://retropie.org.uk/forum/topic/2913/guide-use-qtsixa-on-ubuntu-16-04-and-derivatives
+-#USB Camera
+-http://wiki.ros.org/usb_cam
+-
+-#Kinect 
+-http://wiki.ros.org/openni_kinect
