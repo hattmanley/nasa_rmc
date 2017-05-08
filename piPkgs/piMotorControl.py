@@ -13,49 +13,45 @@ freq = 100
 
 #function to convert length to frequency
 def lengthToFreq(length,freq):
-	return abs(length*freq*4096/1000) #for testing with leds
-	#return length*freq*4096/1000 #for actual applications
+        return abs(length*freq*4096/1000) #for testing with leds
+        #return length*freq*4096/1000 #for actual applications
 def cmdToLength(cmdIn):
-	return abs(cmdIn) #for testing with leds
-	#return cmdIn/2+1.5 #for actual applications
+        return abs(cmdIn) #for testing with leds
+        #return cmdIn/2+1.5 #for actual applications
 
 def callback(data):
     twist = Twist()
     twist.linear.x = data.linear.x
     twist.angular.z = data.angular.z
     pub.publish(twist) #publishing recieved data for sanity
+    xDir = 0
+    thetaDir = 0
     if twist.linear.x < 0:
         #left stick pulled back from ps3TeleopSimple.py
         print "Going Backwards"
-		xDir = twist.linear.x
+        xDir = twist.linear.x
     elif twist.linear.x > 0:
         #left stick pushed forward from ps3TeleopSimple.py
         print "Going Forwards"
-		xDir = twist.linear.x
+        xDir = twist.linear.x
     if twist.angular.z > 0:
         #right stick left from ps3TeleopSimple.py
         print "Turning Left"
-		thetaDir = twist.angular.z
+        thetaDir = twist.angular.z
     elif twist.angular.z < 0:
         #right stick right from ps3TeleopSimple.py
-		thetaDir = twist.angular.z
+        thetaDir = twist.angular.z
         print "Turning Right"
     if twist.linear.x == 0 and twist.angular.z == 0:
-		thetaDir=0
-		xDir=0
+        thetaDir=0
+        xDir=0
         print "Stopping"
 
-	xDirLength = 1.5+xDir/2
-	thetaDirLength = 1.5+thetaDir/2
-
-	print("Forward load: ",xDirLength)
-	print("Turning load: ",thetaDirLength)
-
-	#Motor List:
-	frontLeft = 0
-	frontRight = 1
-	backLeft = 2
-	backRight = 3
+#Motor List:
+    frontLeft = 0
+    frontRight = 1
+    backLeft = 2
+    backRight = 3
 	######the below motors should not be controlled here.#########
 	#linearShovel = 4
 	#angularShovel = 5
@@ -68,25 +64,25 @@ def callback(data):
 	#motors to suddenly reverse when we want to turn.  They
 	#should probably just go a little slower.
 
-	if xDir == 0:
-		leftLength = cmdToLength(thetaDir)
-		rightLength = -leftSpeed
-	if thetaDir == 0:
-		leftLength = cmdToLength(xDir)
-		rightLength = leftLength
-	if thetaDir > 0 and abs(xDir) > 0:
-		#left
-		rightLength = cmdToLength(xDir)
-		leftLength = cmdToLength(rightLength*(1-theatDir))
-	elif thetaDir < 0 and abs(xDir) > 0:
-		#right
-		leftLength = cmdToLength(xDir)
-		rightLength = cmdToLength(leftLength*(1-theatDir))
+    if xDir == 0:
+        leftLength = cmdToLength(thetaDir)
+        rightLength = -leftLength
+    if thetaDir == 0:
+        leftLength = cmdToLength(xDir)
+        rightLength = leftLength
+    if thetaDir > 0 and abs(xDir) > 0:
+	#left
+        rightLength = cmdToLength(xDir)
+        leftLength = cmdToLength(rightLength*(1-thetaDir))
+    elif thetaDir < 0 and abs(xDir) > 0:
+        #right
+        leftLength = cmdToLength(xDir)
+        rightLength = cmdToLength(leftLength*(1-thetaDir))
 
     pwm.set_pwm(frontLeft, 0, int(lengthToFreq(leftLength,freq)))
-	pwm.set_pwm(frontRight, 0, int(lengthToFreq(rightLength,freq)))
-	pwm.set_pwm(backLeft, 0, int(lengthToFreq(leftLength,freq)))
-	pwm.set_pwm(backRight, 0, int(lengthToFreq(rightLength,freq)))
+    pwm.set_pwm(frontRight, 0, int(lengthToFreq(rightLength,freq)))
+    pwm.set_pwm(backLeft, 0, int(lengthToFreq(leftLength,freq)))
+    pwm.set_pwm(backRight, 0, int(lengthToFreq(rightLength,freq)))
 
 def start():
     global pub
@@ -110,7 +106,7 @@ def start():
 #pwm.set_pwm_freq(freq) #set pwm frequency to 100 hz
 
 if __name__ == "__main__":
-        print "started"
-        pwm.set_pwm_freq(freq)
-        print "pwm freq set"
-        start()
+    print "started"
+    pwm.set_pwm_freq(freq)
+    print "pwm freq set"
+    start()
