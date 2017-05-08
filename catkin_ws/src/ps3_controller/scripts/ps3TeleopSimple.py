@@ -51,7 +51,7 @@ AXIS_GYRO_YAW               =19
 def callback(data):
     twist = Twist()
     twist.linear.x = data.axes[AXIS_STICK_LEFT_UPWARDS]
-    twist.angular.z = data.axes[AXIS_STICK_LEFT_LEFTWARDS]
+    twist.angular.z = data.axes[AXIS_STICK_RIGHT_LEFTWARDS]
     pub.publish(twist)
 
 def start():
@@ -59,6 +59,7 @@ def start():
     pub = rospy.Publisher('robot/cmd_vel',Twist,queue_size=10)
     rospy.Subscriber("joy",Joy,callback)
     rospy.init_node('Joy2Robot')
+    print "spinning"
     rospy.spin()
 
 if __name__ == '__main__':
