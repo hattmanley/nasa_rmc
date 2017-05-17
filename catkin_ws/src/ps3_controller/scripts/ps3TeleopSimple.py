@@ -52,6 +52,16 @@ def callback(data):
     twist = Twist()
     twist.linear.x = data.axes[AXIS_STICK_LEFT_UPWARDS]
     twist.angular.z = data.axes[AXIS_STICK_RIGHT_LEFTWARDS]
+
+
+    twist.linear.z = data.buttons[BUTTON_REAR_LEFT_1]
+    #linear down
+    twist.linear.y = data.buttons[BUTTON_REAR_LEFT_2]
+    #rotate dump
+    twist.angular.x = data.buttons[BUTTON_REAR_RIGHT_2]
+    #rotate scoop
+    twist.angular.y=data.buttons[BUTTON_REAR_RIGHT_1]
+
     pub.publish(twist)
 
 def start():
