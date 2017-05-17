@@ -79,26 +79,26 @@ You might be good now.  Probably not.
 ## visp_auto_tracker notes
 Change values in /opt/ros/kinetic/share/visp_auto_tracker/models/pattern.cfg for the specific QR Code.
 
-# detector-type
+### detector-type
 
 The following detectors are supported
 
 detector-type= zbar: uses libzbar to detect QRcodes
 detector-type= dmtx: uses libdmtx to detect flashcodes
 
-# flashcode-coordinates
+### flashcode-coordinates
 
 3D-coordinates in meters of the box delimiting the pattern (QRcode or flashcode).
 
-# inner-coordinates
+### inner-coordinates
 
 3D-coordinates in meters of the white box containing the pattern.
 
-#outer-coordinates
+### outer-coordinates
 
 3D-coordinates in meters of the black box containing the pattern.
 
-# ad-hoc-recovery
+### ad-hoc-recovery
 
 When set (tracker-type= 1) this parameter activates the tracking lost detection and recovery using flashcode-coordinates, inner-coordinates and outer-coordinates point coordinates.
 
