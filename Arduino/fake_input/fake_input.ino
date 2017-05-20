@@ -53,6 +53,8 @@ int rTop = 34;
 int lBottom = 35;
 int lTop = 36;
 
+//================================DEFINE INTERVAL TIMERS========================
+IntervalTimer pidtimer; //used w/ controlloop
 
 //================================ROS===========================================
 void callbackVel(const geometry_msgs::Twist& data) {
@@ -67,10 +69,6 @@ void callbackVel(const geometry_msgs::Twist& data) {
   lastcommand = millis(); //remember millis returns an unsigned long.
 }
 ros::Subscriber<geometry_msgs::Twist> cmd_sub("robot/motor_control_serial", &callbackVel );
-
-//================================DEFINE INTERVAL TIMERS========================
-IntervalTimer pidtimer; //used w/ controlloop
-
 
 void setup(){
   //================================SERIAL======================================
@@ -110,8 +108,6 @@ void setup(){
   analogWriteResolution(12); //0 - 4095, at 250hz, 4ms is split into 4096 parts,
                              //1~2ms is from 1023-2047, 1537 being the center
 }
-
-
 
 //==================================MAIN========================================
 void loop() {
@@ -192,6 +188,30 @@ void esc(int pin, float throttle, bool esup, bool esdown){
   }
   motorWrite(pin,throttle);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
