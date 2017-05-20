@@ -72,6 +72,7 @@ def callback(data):
     #     thetaDir=0
     #     xDir=0
     #     print "Stopping"
+
     if twist.angular.y:
         print "rotating shovel up"
         rotateOutput = 1*rotateScalar
@@ -116,15 +117,24 @@ def callback(data):
         #right
         leftOutput = xDir*motorScalar
         rightOutput = leftOutput*(1-abs(thetaDir))
+
+    robotShit=Twist()
+    robotShit.linear.x=leftOutput
+    robotShit.linear.y=rightOutput
+    robotShit.linear.z=leftOutput
+    robotShit.angular.x=rightOutput
+    robotShit.angular.y=linearOutput
+    robotShit.angular.z=rotateOutput
     try:
-        ser.write(struct.pack('<BBB',leftOutput,rightOutput,leftOutput,rightOutput,linearOutput,rotateOutput)) #sending code
+        robotPub.publish(robotShit)
     except:
-        print ""
+        print "error"
     print leftOutput,",",rightOutput,",",linearOutput,",",rotateOutput
 
 def start():
     global pub
     pub = rospy.Publisher('/robot/recieved_cmd',Twist,queue_size=10)
+    robotPub=rospy.Publisher('/robot/motor_control_serial')
     rospy.Subscriber('/robot/cmd_vel',Twist,callback)
     rospy.Subscriber('robot/tool_control',Twist,)
     rospy.init_node('motor_control')
