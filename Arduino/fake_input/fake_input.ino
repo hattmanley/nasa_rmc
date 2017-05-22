@@ -206,14 +206,10 @@ void toolControl(int pin, int postarget, int esdown, int esup, int enc, bool cal
     float throttle = difference / 7.0;
     //rotation case
   }
-  esc(pin,throttle,up,down);
-}
-
-void esc(int pin, float throttle, bool esup, bool esdown){
-  if (esup == true){
+  if (up){
     throttle = constrain(throttle, -motorMax, 0); //if at top, only move down
   }
-  if (esdown == true){
+  if(down){
     throttle = constrain(throttle, 0, motorMax); //if at bottom, only move up
   }
   motorWrite(pin,throttle);
@@ -257,7 +253,19 @@ void esc(int pin, float throttle, bool esup, bool esdown){
 
 
 
+
 //===============================JUNK YARD======================================
+
+
+// void esc(int pin, float throttle, bool esup, bool esdown){
+//   if (esup == true){
+//     throttle = constrain(throttle, -motorMax, 0); //if at top, only move down
+//   }
+//   if (esdown == true){
+//     throttle = constrain(throttle, 0, motorMax); //if at bottom, only move up
+//   }
+//   motorWrite(pin,throttle);
+// }
 
 //IntervalTimer rpmtimer;
 
